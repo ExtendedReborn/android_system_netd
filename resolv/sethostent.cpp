@@ -44,7 +44,6 @@
 #include "hostent.h"
 #include "resolv_private.h"
 
-#include "gethostsfile.h"
 #include "hosts_cache.h"
 
 #define ALIGNBYTES (sizeof(uintptr_t) - 1)
@@ -52,7 +51,7 @@
 
 static void sethostent_r(FILE** hf) {
     if (!*hf)
-        *hf = fopen(gethostsfile(), "re");
+        *hf = fopen(_PATH_HOSTS, "re");
     else
         rewind(*hf);
 }
